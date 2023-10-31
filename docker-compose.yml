@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - 27017:27017
+
+  app:
+    container_name: app
+    build:
+      context: src/.
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - mongo
+
+  memory_check:
+    container_name: memory_check
+    build:
+      context: memory_check/.
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - app
