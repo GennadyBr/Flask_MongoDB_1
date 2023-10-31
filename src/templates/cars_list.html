@@ -29,13 +29,13 @@
                 <td>{{ car.name }}</td>
                 <td>{{ car.year }}</td>
                 <td>{{ car.price }}</td>
-                <td><a href='updatecar/{{ car.id }}'>Edit</a></td>
-                <td><a href='deletecar/{{ car.id }}'>Delete</a></td>
+                <td><a href='update/{{ car.id }}'>Edit</a></td>
+                <td><a href='delete/{{ car.id }}'>Delete</a></td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<a class="btn btn-primary" href="addcar">Add New Car</a>
+<a class="btn btn-primary" href="add">Add New Car</a>
 
 </html>
