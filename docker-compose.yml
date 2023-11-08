@@ -5,6 +5,8 @@ services:
     image: mongo
     ports:
       - 27017:27017
+#    networks:
+#      - my_network
 
   app:
     container_name: app
@@ -16,6 +18,8 @@ services:
       - 8080:8080
     links:
       - mongo
+#    networks:
+#      - my_network
 
   memory_check:
     container_name: memory_check
@@ -25,3 +29,11 @@ services:
     restart: always
     depends_on:
       - app
+#    networks:
+#      - my_network
+
+
+networks:
+  default:
+#    external: true
+    name: my_network
