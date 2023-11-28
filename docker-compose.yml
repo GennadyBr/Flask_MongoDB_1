@@ -4,9 +4,7 @@ services:
     container_name: mongo
     image: mongo
     ports:
-      - 27017:27017
-#    networks:
-#      - my_network
+      - ${MONGO_DB_PORT}:${MONGO_DB_PORT}
 
   app:
     container_name: app
@@ -15,11 +13,9 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - 8080:8080
+      - ${FLASK_PORT}:${FLASK_PORT}
     links:
       - mongo
-#    networks:
-#      - my_network
 
   memory_check:
     container_name: memory_check
@@ -29,11 +25,3 @@ services:
     restart: always
     depends_on:
       - app
-#    networks:
-#      - my_network
-
-
-networks:
-  default:
-#    external: true
-    name: my_network
