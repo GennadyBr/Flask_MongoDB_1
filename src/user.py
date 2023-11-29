@@ -85,4 +85,4 @@ def delete_user(id):
 
 if __name__ == '__main__':
     start_mongo_db()
-    app.run(host=os.getenv('FLASK_HOST'), port=os.getenv('FLASK_PORT'), debug=True)
+    app.run(port=os.getenv('FLASK_PORT'), debug=True)
