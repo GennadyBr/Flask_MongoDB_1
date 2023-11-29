@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
 <head>
-    <title>Car Details</title>
+    <title>User Details</title>
 
     <link rel="stylesheet" crossorigin="anonymous"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" >
@@ -13,24 +13,24 @@
 </head>
 
 <body>
-    <h2>Car Details</h2>
+    <h2>User Details</h2>
 
     <form action="" method = "POST">
         <div class="form-group row">
           <label for="id">Id</label>
-          <input type="text" class="form-control" name="id" id="id" value="{{car.id}}">
+          <input type="text" class="form-control" name="id" id="id" value="{{user.id}}">
         </div>
         <div class="form-group row">
-            <label for="name">Maker and Model</label>
-            <input type="text" class="form-control" name="name" id="name" value="{{car.name}}">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" id="name" value="{{user.name}}">
         </div>
         <div class="form-group row">
-            <label for="year">Make Year</label>
-            <input type="text" class="form-control" name="year" id="year" value="{{car.year}}">
+            <label for="year">Year of birth</label>
+            <input type="text" class="form-control" name="year" id="year" value="{{user.year}}">
         </div>
         <div class="form-group row">
-            <label for="price">Sell Price</label>
-            <input type="text" class="form-control" name="price" id="price" value="{{car.price}}">
+            <label for="salary">Salary</label>
+            <input type="text" class="form-control" name="salary" id="salary" value="{{user.salary}}">
         </div>
         <button type="btnAdd" class="btn btn-primary">Submit</button>
         <a href="/" class="btn btn-primary">Cancel</a>

@@ -2,7 +2,7 @@ version: '3.5'
 services:
   mongo:
     container_name: mongo
-    image: mongo
+    image: mongo:7.0.4
     ports:
       - ${MONGO_DB_PORT}:${MONGO_DB_PORT}
 
@@ -12,6 +12,8 @@ services:
       context: src/.
       dockerfile: Dockerfile
     restart: always
+    env_file:
+      - .env
     ports:
       - ${FLASK_PORT}:${FLASK_PORT}
     links:
