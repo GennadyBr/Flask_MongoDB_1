@@ -1,4 +1,4 @@
-from src.main import _connect_db
+from mongo_db_conn import _connect_db
 
 
 def fill_data() -> None:

@@ -1,29 +1,18 @@
 import os
-import logging
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect
-from pymongo import MongoClient, collection
 
-from create_mongo_db import fill_data
+from mongo_db_create import fill_data
+from mongo_db_conn import _connect_db
 
 load_dotenv()
 
 app = Flask(__name__)
 fill_data()
 
-def _connect_db() -> collection:
-    """Получение клиента базы данных"""
-    logging.info(f"{os.getenv('MONGO_DB_PORT')=}")
-    client = MongoClient(f"mongodb://mongo:{os.getenv('MONGO_DB_PORT')}")
-    db = client["users_db"]
-    collection = db["users_sales"]
-    return collection
-
-
-
 
 @app.route("/")
-def main():
+def show_user():
     """Вывод содержания базы данных на первой странице"""
     users = []
     collection = _connect_db()
