@@ -4,9 +4,12 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect
 from pymongo import MongoClient, collection
 
+from create_mongo_db import fill_data
+
 load_dotenv()
 
 app = Flask(__name__)
+fill_data()
 
 def _connect_db() -> collection:
     """Получение клиента базы данных"""
@@ -17,16 +20,6 @@ def _connect_db() -> collection:
     return collection
 
 
-def start_mongo_db() -> None:
-    """Первоначальное заполнение базы данных примерами"""
-    collection = _connect_db()
-    collection.insert_many([
-        {"ID": 1, "Name": "Misha", "Year": 1990, "Salary": 2000},
-        {"ID": 2, "Name": "Tolya", "Year": 1991, "Salary": 2200},
-        {"ID": 3, "Name": "Alex", "Year": 1992, "Salary": 1800},
-        {"ID": 4, "Name": "Mark", "Year": 1993, "Salary": 2500},
-        {"ID": 5, "Name": "Sasha", "Year": 1994, "Salary": 3000}
-    ])
 
 
 @app.route("/")
@@ -84,5 +77,4 @@ def delete_user(id):
 
 
 if __name__ == '__main__':
-    start_mongo_db()
     app.run(host="0.0.0.0", port=os.getenv('FLASK_PORT'), debug=True)
