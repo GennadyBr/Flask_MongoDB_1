@@ -1,5 +1,5 @@
 from mongo_db_conn import _connect_db
-
+from logger import logger
 
 def fill_data() -> None:
     """Первоначальное заполнение базы данных примерами"""
@@ -11,6 +11,7 @@ def fill_data() -> None:
         {"ID": 4, "Name": "Mark", "Year": 1993, "Salary": 2500},
         {"ID": 5, "Name": "Sasha", "Year": 1994, "Salary": 3000}
     ])
+    logger.info('Первоначальное заполнение базы данных примерами')
 
 
 if __name__ == '__main__':
