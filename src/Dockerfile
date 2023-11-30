@@ -12,4 +12,4 @@ RUN  pip3 install --no-cache-dir --upgrade pip \
 
 COPY . /app
 
-CMD ["python", "user.py"]
+CMD ["python", "main.py"]
