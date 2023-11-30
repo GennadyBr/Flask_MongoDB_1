@@ -5,6 +5,8 @@ services:
     image: mongo:7.0.4
     ports:
       - ${MONGO_DB_PORT}:${MONGO_DB_PORT}
+    volumes:
+      - 'mongo_volume:/data/db'
 
   app:
     container_name: app
@@ -29,3 +31,6 @@ services:
     restart: always
     depends_on:
       - app
+
+volumes:
+  mongo_volume:
