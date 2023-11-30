@@ -2,13 +2,13 @@ import os
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect
 
-from mongo_db_create import fill_data
+# from mongo_db_create import fill_data
 from mongo_db_conn import _connect_db
 
 load_dotenv()
 
 app = Flask(__name__)
-fill_data()
+# fill_data()
 
 
 @app.route("/")

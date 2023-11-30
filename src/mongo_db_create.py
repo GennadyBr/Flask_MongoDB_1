@@ -11,3 +11,7 @@ def fill_data() -> None:
         {"ID": 4, "Name": "Mark", "Year": 1993, "Salary": 2500},
         {"ID": 5, "Name": "Sasha", "Year": 1994, "Salary": 3000}
     ])
+
+
+if __name__ == '__main__':
+    fill_data()

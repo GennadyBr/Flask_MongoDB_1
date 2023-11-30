@@ -12,4 +12,5 @@ RUN  pip3 install --no-cache-dir --upgrade pip \
 
 COPY . /app
 
-CMD ["python", "main.py"]
+CMD python mongo_db_create.py; python main.py
+#CMD ["python", "main.py"]
