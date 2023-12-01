@@ -2,34 +2,37 @@ import time
 import psutil
 import requests
 
+from settings import logger
+
 
 # Функция для отправки HTTP-запроса на API
-def send_alarm():
+def send_alarm(memory_usage):
     # Определение URL и параметров запроса к API
-    API_URL = 'https://httpbin.org/'
-    PARAMS = {
-        'message': 'High memory_check usage detected!'
+    api_url = 'https://httpbin.org/'
+    params = {
+        'message': 'High memory usage detected!'
     }
-    result = requests.get(API_URL, params=PARAMS)
-    print(result)
+    result = requests.get(api_url, params=params)
+    logger.info(f'{result}, {params["message"]}, {memory_usage}')
 
 
 def run():
     # Определение порогового значения потребления памяти в процентах
-    MEMORY_THRESHOLD = 80
+    mem_threshold = 80
 
     # Основной цикл скрипта
     while True:
         # Получение информации о потреблении памяти
         memory_usage = psutil.virtual_memory().percent
-        print(memory_usage)
 
         # Проверка на превышение порогового значения
-        if memory_usage > MEMORY_THRESHOLD:
-            send_alarm()
+        if memory_usage > mem_threshold:
+            send_alarm(memory_usage)
+        else:
+            logger.info(f'Normal memory usage detected! {memory_usage}')
 
         # Интервал между проверками состояния памяти (в секундах)
-        time.sleep(1)
+        time.sleep(5)
 
 
 if __name__ == "__main__":

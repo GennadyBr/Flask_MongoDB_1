@@ -1,5 +1,6 @@
 from mongo_db_conn import _connect_db
-from logger import logger
+from settings import logger
+
 
 def fill_data() -> None:
     """Первоначальное заполнение базы данных примерами"""

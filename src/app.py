@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect
 
 from mongo_db_conn import _connect_db
-from logger import logger
+from settings import logger
 
 load_dotenv()
 
@@ -70,4 +70,4 @@ def delete_user(id):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=os.getenv('FLASK_PORT'), debug=True)
+    app.run(host="0.0.0.0", port=os.getenv('FLASK_PORT'), debug=True, template_folder='templates')
