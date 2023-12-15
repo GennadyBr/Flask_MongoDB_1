@@ -39,7 +39,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     depends_on:
-      - app
+      - app_1
 
 volumes:
   mongo_volume:
