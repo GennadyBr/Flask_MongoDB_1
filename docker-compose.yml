@@ -1,27 +1,36 @@
 version: '3.5'
 services:
-  mongo:
-    container_name: mongo
+  mongo_1:
+    container_name: mongo_1
     image: mongo:7.0.4
-    ports:
-      - ${MONGO_DB_PORT}:${MONGO_DB_PORT}
+    restart: always
+#    ports:
+#      - ${MONGO_DB_PORT}:${MONGO_DB_PORT}
+    expose:
+      - ${MONGO_DB_PORT}
     volumes:
       - 'mongo_volume:/data/db'
 
-  app:
-    container_name: app
+  app_1:
+    depends_on:
+      - mongo_1
     build:
       context: src/.
       dockerfile: Dockerfile
+    container_name: app_1
+#    ports:
+#      - 5000:5000
+    expose:
+      - 80
     restart: always
+    environment:
+      VIRTUAL_HOST: app_1.smart-python.ru
     env_file:
       - .env
-    ports:
-      - 5000:5000
 #      Источник: https://advicemama.ru/dostup-k-konteineru-servera-docker-flask-nevozmozen-cerez-xost
 #      - ${FLASK_PORT}:${FLASK_PORT}
-    links:
-      - mongo
+#    links:
+#      - mongo
 
   memory_check:
     container_name: memory_check
@@ -34,3 +43,8 @@ services:
 
 volumes:
   mongo_volume:
+
+networks:
+  default:
+    external:
+      name: nginx_proxy
