@@ -7,10 +7,10 @@ from settings import logger
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, root_path='/app_1')
 
 
-@app.route("/")
+@app.route("/app_1")
 def show_user():
     """Вывод содержания базы данных на первой странице"""
     users = []
@@ -35,7 +35,7 @@ def add_user():
         new_user = {"ID": id, "Name": name, "Year": year, "Salary": salary}
         collection.insert_one(new_user)
         logger.info(f'POST {new_user=}')
-        return redirect('/')
+        return redirect('/app_1')
 
 
 @app.route("/update/<int:id>", methods=['GET', 'POST'])
@@ -57,7 +57,7 @@ def update_user(id):
         update_value = {"$set": {"Name": name, "Year": year, "Salary": salary}}
         collection.update_one(condition, update_value)
         logger.info(f'POST {id=}, {update_value=}')
-        return redirect("/")
+        return redirect("/app_1")
 
 
 @app.route("/delete/<int:id>")
@@ -66,7 +66,7 @@ def delete_user(id):
     collection = _connect_db()
     collection.delete_one({"ID": id})
     logger.info(f'DELETE {id=}')
-    return redirect('/')
+    return redirect('/app_1')
 
 
 if __name__ == '__main__':

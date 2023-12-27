@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
     container_name: app_1
 #    ports:
-#      - 5000:5000
+#      - ${FLASK_PORT}:${FLASK_PORT}
     expose:
       - 80
     restart: always
@@ -29,8 +29,6 @@ services:
       - .env
 #      Источник: https://advicemama.ru/dostup-k-konteineru-servera-docker-flask-nevozmozen-cerez-xost
 #      - ${FLASK_PORT}:${FLASK_PORT}
-#    links:
-#      - mongo
 
   memory_check:
     container_name: memory_check
@@ -46,5 +44,5 @@ volumes:
 
 networks:
   default:
-    external:
       name: nginx_proxy
+      external: true
