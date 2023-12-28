@@ -11,20 +11,18 @@ services:
     volumes:
       - 'mongo_volume:/data/db'
 
-  app_1:
+  flask_mongo_app:
     depends_on:
       - mongo_1
     build:
       context: src/.
       dockerfile: Dockerfile
-    container_name: app_1
+    container_name: flask_mongo_app
 #    ports:
 #      - ${FLASK_PORT}:${FLASK_PORT}
     expose:
-      - 80
+      - ${FLASK_PORT}
     restart: always
-    environment:
-      VIRTUAL_HOST: app_1.smart-python.ru
     env_file:
       - .env
 #      Источник: https://advicemama.ru/dostup-k-konteineru-servera-docker-flask-nevozmozen-cerez-xost
@@ -36,8 +34,6 @@ services:
       context: memory_check/.
       dockerfile: Dockerfile
     restart: always
-    depends_on:
-      - app_1
 
 volumes:
   mongo_volume:

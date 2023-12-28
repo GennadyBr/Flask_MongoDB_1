@@ -25,17 +25,17 @@
     <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.id }}</th>
+                <td>{{ user.id }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.year }}</td>
                 <td>{{ user.salary }}</td>
-                <td><a href='update/{{ user.id }}'>Edit</a></td>
-                <td><a href='delete/{{ user.id }}'>Delete</a></td>
+                <td><a href='{{ prefix }}/update/{{ user.id }}'>Edit</a></td>
+                <td><a href='{{ prefix }}/delete/{{ user.id }}'>Delete</a></td>
             </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<a class="btn btn-primary" href="add">Add New User</a>
+<a class="btn btn-primary" href="{{ prefix }}/add">Add New User</a>
 
 </html>
