@@ -3,11 +3,9 @@
 #service apache2 stop
 
 sudo docker network create nginx_proxy
-sudo docker compose down
-sudo docker compose up -d --build
-#sudo docker-compose up -d --build
-sudo docker logs app_1
-
+sudo docker-compose down
+sudo docker-compose up -d --build
+sudo docker logs flask_mongo_app
 sudo docker network inspect nginx_proxy
 
 #сделать исполняемым
