@@ -4,12 +4,15 @@ services:
     container_name: mongo_1
     image: mongo:7.0.4
     restart: always
-#    ports:
-#      - ${MONGO_DB_PORT}:${MONGO_DB_PORT}
-    expose:
-      - ${MONGO_DB_PORT}
+    ports:
+      - ${MONGO_DB_PORT}:${MONGO_DB_PORT}
+#    expose:
+#      - ${MONGO_DB_PORT}
+    env_file:
+      - .env
     volumes:
-      - 'mongo_volume:/data/db'
+      - 'mongo_db:/data/db'
+      - 'mongo_conf:/data/configdb'
 
   flask_mongo_app:
     depends_on:
@@ -18,15 +21,14 @@ services:
       context: src/.
       dockerfile: Dockerfile
     container_name: flask_mongo_app
-#    ports:
-#      - ${FLASK_PORT}:${FLASK_PORT}
-    expose:
-      - ${FLASK_PORT}
+    ports:
+      - ${FLASK_PORT}:${FLASK_PORT}
+#    expose:
+#      - ${FLASK_PORT}
     restart: always
     env_file:
       - .env
 #      Источник: https://advicemama.ru/dostup-k-konteineru-servera-docker-flask-nevozmozen-cerez-xost
-#      - ${FLASK_PORT}:${FLASK_PORT}
 
   memory_check:
     container_name: memory_check
@@ -36,7 +38,8 @@ services:
     restart: always
 
 volumes:
-  mongo_volume:
+  mongo_db:
+  mongo_conf:
 
 networks:
   default:
